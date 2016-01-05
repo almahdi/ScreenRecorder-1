@@ -35,8 +35,8 @@ public class ScreenRecorder extends Thread {
     private VirtualDisplay mVirtualDisplay;
 
     public ScreenRecorder(int width, int height, int bitrate, int dpi, MediaProjection mp, String dstPath) {
-        mWidth = width;
-        mHeight = height;
+        mWidth = 1080;
+        mHeight = 1920;
         mBitRate = bitrate;
         mDpi = dpi;
         mMediaProjection = mp;
