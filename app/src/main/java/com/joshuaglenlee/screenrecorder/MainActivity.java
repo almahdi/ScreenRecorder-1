@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
@@ -13,6 +14,11 @@ import android.view.MenuItem;
 import android.widget.Toolbar;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends Activity {
     private static final int REQUEST_CODE = 1;
@@ -23,7 +29,10 @@ public class MainActivity extends Activity {
     private int screenWidth;
     private int screenHeight;
     private int bitrate;
-    public String mFilePath = Environment.getExternalStorageDirectory()+"/ScreenRecorder/";
+
+    private String mName = "ScreenRecorder_";
+    private String mFilePath = Environment.getExternalStorageDirectory()+"/ScreenRecorder/";
+    private final DateFormat mDate = new SimpleDateFormat("yyyy-MM-dd_hh:mm:ss");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +60,8 @@ public class MainActivity extends Activity {
         if (mediaProjection != null) {
 	    File directory = new File(mFilePath);
 	    directory.mkdirs();
-            File file = new File(mFilePath, "screen_recording-" + System.currentTimeMillis() + ".mp4");
+	    String mFileName = mFilePath + mName + mDate.format(new Date()) + ".mp4";
+            File file = new File(mFileName);
             bitrate = 6000000;
             screenRecorder = new ScreenRecorder(screenWidth, screenHeight, bitrate, 1, mediaProjection, file.getAbsolutePath());
             screenRecorder.start();
