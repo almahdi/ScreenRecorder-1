@@ -8,8 +8,8 @@ android {
         applicationId "com.joshuaglenlee.screenrecorder"
         minSdkVersion 21
         targetSdkVersion 21
-        versionCode 000005
-        versionName "1.0.4"
+        versionCode 000006
+        versionName "1.0.5"
     }
     buildTypes {
         release {
