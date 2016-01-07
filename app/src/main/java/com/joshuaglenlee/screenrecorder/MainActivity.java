@@ -1,6 +1,7 @@
 package com.joshuaglenlee.screenrecorder;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
@@ -11,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import java.io.File;
@@ -33,6 +35,11 @@ public class MainActivity extends Activity {
     private String mName = "ScreenRecorder_";
     private String mFilePath = Environment.getExternalStorageDirectory()+"/ScreenRecorder/";
     private final DateFormat mDate = new SimpleDateFormat("yyyy-MM-dd_hh:mm:ss");
+
+    private Context context = this;
+    private CharSequence start = "Recording... Tap again to STOP!";
+    private CharSequence stop = "Recording saved...";
+    private int duration = Toast.LENGTH_SHORT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +73,8 @@ public class MainActivity extends Activity {
             screenRecorder = new ScreenRecorder(screenWidth, screenHeight, bitrate, 1, mediaProjection, file.getAbsolutePath());
             screenRecorder.start();
             moveTaskToBack(true);
+	    Toast toast = Toast.makeText(context, start, duration);
+	    toast.show();
         }
     }
 
@@ -82,9 +91,13 @@ public class MainActivity extends Activity {
                 if (screenRecorder != null) {
                     screenRecorder.quit();
                     screenRecorder = null;
+		    Toast toast = Toast.makeText(context, stop, duration);
+		    toast.show();
                 } else {
                     Intent captureIntent = mediaProjectionManager.createScreenCaptureIntent();
                     startActivityForResult(captureIntent, REQUEST_CODE);
+		    Toast toast = Toast.makeText(context, start, duration);
+		    toast.show();
                 }
                 break;
         }
