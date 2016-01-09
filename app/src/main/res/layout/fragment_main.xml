@@ -25,8 +25,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
 	android:layout_marginTop="120dp"
-	android:layout_marginLeft="100dp"
-	android:layout_marginRight="100dp"
+	android:layout_marginLeft="150dp"
+	android:layout_marginRight="150dp"
         android:src="@drawable/ic_icon"
 	android:gravity="center" />
 
