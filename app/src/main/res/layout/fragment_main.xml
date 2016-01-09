@@ -22,11 +22,11 @@
 
     <ImageView
         android:id="@+id/recorderIcon"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 	android:layout_marginTop="120dp"
-	android:layout_marginLeft="150dp"
-	android:layout_marginRight="150dp"
+	android:layout_marginLeft="0dp"
+	android:layout_marginRight="0dp"
         android:src="@drawable/ic_icon"
 	android:gravity="center" />
 
