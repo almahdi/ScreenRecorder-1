@@ -1,6 +1,7 @@
 package com.joshuaglenlee.screenrecorder;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.media.projection.MediaProjection;
@@ -10,8 +11,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -46,7 +50,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMain);
         if (toolbar != null) {
             setActionBar(toolbar);
         }
@@ -58,6 +62,12 @@ public class MainActivity extends Activity {
         screenHeight = metrics.heightPixels;
 
         mediaProjectionManager = (MediaProjectionManager) getSystemService(MEDIA_PROJECTION_SERVICE);
+
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, new MainFragment())
+                    .commit();
+        }
     }
 
     @Override
@@ -70,7 +80,8 @@ public class MainActivity extends Activity {
 	    String mFileName = mFilePath + mName + mDate.format(new Date()) + ".mp4";
             File file = new File(mFileName);
             bitrate = 6000000;
-            screenRecorder = new ScreenRecorder(screenWidth, screenHeight, bitrate, 1, mediaProjection, file.getAbsolutePath());
+            screenRecorder = new ScreenRecorder(screenWidth, screenHeight, bitrate, 1, 
+						    mediaProjection, file.getAbsolutePath());
             screenRecorder.start();
             moveTaskToBack(true);
 	    Toast toast = Toast.makeText(context, start, duration);
@@ -104,7 +115,6 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -112,5 +122,18 @@ public class MainActivity extends Activity {
             screenRecorder.quit();
             screenRecorder = null;
         }
+    }
+
+    public static class MainFragment extends Fragment {
+	public MainFragment() {
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+	    return rootView;
+	}
     }
 }

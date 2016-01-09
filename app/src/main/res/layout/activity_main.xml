@@ -1,11 +1,13 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:ignore="MergeRootFrame">
 
     <Toolbar
-        android:id="@+id/toolbar_main"
+        android:id="@+id/toolbarMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/actionBarSize"
@@ -13,4 +15,4 @@
         android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar"
         android:popupTheme="@android:style/ThemeOverlay.Material.Light" />
 
-</RelativeLayout>
+</FrameLayout>
