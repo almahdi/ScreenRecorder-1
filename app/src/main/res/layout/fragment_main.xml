@@ -10,12 +10,14 @@
 
     <TextView
 	android:id="@+id/bodyText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-	android:gravity="center_horizontal"
+	android:gravity="center"
 	android:layout_marginTop="10dp"
+	android:layout_marginLeft="0dp"
+	android:layout_marginRight="0dp"
 	android:textStyle="bold"
-        android:textSize="40sp"
+        android:textSize="25sp"
         android:textColor="@color/text_dark"
 	android:fontFamily="sans-serif-condensed"
         android:text="@string/body_main" />

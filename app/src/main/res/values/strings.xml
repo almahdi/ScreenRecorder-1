@@ -4,6 +4,6 @@
     <string name="app_name">Screen Recorder</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="body_main">Cast the screen to begin a recording!</string>
+    <string name="body_main">Cast the screen with the toolbar icon to begin a recording!</string>
 
 </resources>
